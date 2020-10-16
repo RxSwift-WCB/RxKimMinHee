@@ -1,18 +1,16 @@
 # Chapter 1: Hello RxSwift!
 
 ## What is RxSwift ?
-- 개념 1) 
-    
+
     RxSwift is a library for composing asynchronous and event-based code by using observable sequences and functional style operators, allowing for parameterized execution via schedulers. 
 
     : RxSwift는 Observable들의 순서와 함수적 스타일 연산자를 사용한 비동기 및 이벤트 기반 코드 작성을 위한 라이브러리로써 스케줄러를 통한 매개 변수화된 실행을 하는 라이브러리입니다.
+<br>
 
     RxSwift, in its essence, simplifies developing asynchronous programs by allowing your code to react to new data and process it in a sequential, isolated manner.
 
     : RxSwift는 너의 코드가 새로운 데이터에 반응하고 순차적으로 격리된 방식으로 진행되므로써 본질적으로 비동기 프로그램 개발을 단순화 시킵니다. 
 
-
-----------------------------
 
 ### 중요 KeyWord 
 - *asynchronous* : 비동기적, 비동기식은 동시에 일어나지 않는다는 뜻이다. 요청과 결과가 동시에 일어나지 않는다는 말(요청한 그 자리에서 결과가 주어지지 않음)
