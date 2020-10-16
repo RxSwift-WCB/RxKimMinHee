@@ -105,7 +105,8 @@
     : 몇몇의 observable한 이벤트들은 0 혹은 1개 혹은 그 이상의 값을 내보낸 후 성공적으로 종료되거나 오류와 함께 종료된다. 
         - 일반적인 observable한 생명주기 <br>
         : 다운로드 시작 -> 들어오는 데이터 관찰 -> 파일이 계속 들어옴 -> if 연결이 끊어진다면? 다운로드 중지 + 오류 + 연결 시간 초과 -> else 성공적 완료
-        ``` swift 
+
+    ``` swift 
         API.download(file: "http://www...") 
         // 네트워크를 통해 들어오는 Data값을 방출하는 Observable<Data> 인스턴스를 리턴.
             .subscribe(onNext: { data in
@@ -120,7 +121,7 @@
             // onCompleted는 완료된 이벤트를 처리하기 위한 클로저
                 ... use downloaded file 
             })
-        ```
+    ```
 
     - Infinite observable sequences <br>
     : 보통 UI이벤트는 무한하게 관찰 가능한 이벤트이다.
