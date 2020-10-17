@@ -83,7 +83,49 @@
     })
 ```
 
-## 🐨 Subscribing to observables
-- Observable을 구독하고 싶을 때 구독(subscribe)을 선언함
-- addObserver() 대신에 subscribe()를 사용
-1. subscribe()
+## 🐨 observable factory 만들기
+``` swift
+example(of: "deferred") {
+     let disposeBag = DisposeBag()
+     
+    // 관찰 가능한 Bool 타입의 플래그를 생성한다
+     var flip = false
+     
+     // deferred 연산자를 이용해서 Int factory Observable을 생성한다
+     let factory: Observable<Int> = Observable.deferred{
+         
+         // factory가 구독할 flip의 Bool타입을 전환함 (false > true)
+         flip = !flip
+         
+         // 그래서 flip의 true, false에 따라 값이 달라짐
+         if flip {
+             return Observable.of(1,2,3)
+         } else {
+             return Observable.of(4,5,6)
+         }
+     }
+     
+     for _ in 0...3 {
+         factory.subscribe(onNext: {
+             print($0, terminator: "")
+         })
+             .disposed(by: disposeBag)
+         
+         print()
+     }
+ }
+ /* Prints:
+ 123
+ 456
+ 123
+ 456
+ */
+```
+## 🐯 Traits 사용하기
+: Observable보다 좁은 범위의 Observable. trait는 옵션으로 사용하면서 코드의 가독성을 높일 수 있다.
+- single<br>
+: .success(.next + .completed) 또는 .error 이벤트를 방출한다.
+- Completable<br>
+: .completed 또는 .error 이벤트만 방출함. 다른 값은 방출안함
+- Maybe<br>
+: 위에 나온 single과 Completable를 합쳐놓은 것(success(value), .completed, .error 이벤트 모두 방출 가능)
